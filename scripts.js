@@ -1,14 +1,14 @@
 const sourceLang = document.querySelector('#source');
 const targetLang = document.querySelector('#target');
 const swapBtn = document.querySelector('.swap');
-const translateBtn = document.querySelector('#translate')
+const loadingDiv  = document.querySelector('#loading')
 const word = document.querySelector('.input-box');
 const sourcePair = document.querySelector('#source');
 const targetPair = document.querySelector('#target');
 const outputBox = document.querySelector('.output-box');
 const errorModal = document.querySelector('.error-modal');
 const errorTxt = document.querySelector('#error-txt');
-
+let typingTimer;
 
 
 window.onload = () => {
@@ -48,10 +48,9 @@ const displayLangs = (langs) => {
     
 }
 
-translateBtn.addEventListener('click', () => {
+word.addEventListener('input', () => {
   let url = `https://api.mymemory.translated.net/get?q=${word.value}&langpair=${sourcePair.value}|${targetPair.value}`;
 
-  outputBox.textContent = 'Translating word"s...';
  
   if (word.value == "") {
     word.style.border = '0.1rem solid red';
@@ -63,6 +62,16 @@ translateBtn.addEventListener('click', () => {
       errorModal.style.display = 'none';
     }, 2000);
   } else {
+    
+    loadingDiv.style.display = 'block';
+    loadingDiv.innerHTML = 'Translating texts...';
+    
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => {
+      loadingDiv.style.display = 'none';
+    }, 2000);
+    
+    
     fetch(url)
      .then(response => {
        if (!response.ok) {

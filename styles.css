@@ -40,7 +40,7 @@ main {
 @keyframes shake-y {
  20%,60% {
    transform: translateY(-0.4rem);
- },
+ }
  40%, 80% {
   transform: translateY(0.4rem);
  }
@@ -145,6 +145,7 @@ button {
  width: 80%;
  height: 3.4rem;
  color: rgb(220, 220, 250);
+ display: none;
  font-family: 'Poppins', Sans-Serif;
  background: rgb(1, 30, 160);
  border: none;
