@@ -45,13 +45,14 @@ const displayLangs = (langs) => {
   swapBtn.addEventListener('click', () => {
     [sourceLang.value, targetLang.value] = [targetLang.value, sourceLang.value]
   });
-     
+    
 }
-
 
 translateBtn.addEventListener('click', () => {
   let url = `https://api.mymemory.translated.net/get?q=${word.value}&langpair=${sourcePair.value}|${targetPair.value}`;
-  
+
+  outputBox.textContent = 'Translating word"s...';
+ 
   if (word.value == "") {
     word.style.border = '0.1rem solid red';
     errorModal.style.display = 'block';
